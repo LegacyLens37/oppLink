@@ -1,4 +1,4 @@
-# oppLink
+# oppLink (Front-end)
 
 Web app for discovering opportunities, onboarding, and coaching-style support. Built with React, TypeScript, and Vite.
 
