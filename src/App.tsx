@@ -14,6 +14,7 @@ import { Dashboard } from './pages/Dashboard';
 import { OpportunityDiscovery } from './pages/OpportunityDiscovery';
 import { OpportunityDetail } from './pages/OpportunityDetail';
 import { SupportCoaching } from './pages/SupportCoaching';
+import { FounderContact } from './pages/FounderContact';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -88,6 +89,7 @@ export function App() {
               }
             />
             <Route path="/support" element={<SupportCoaching />} />
+            <Route path="/founder-contact" element={<FounderContact />} />
           </Routes>
         </Layout>
       </Router>

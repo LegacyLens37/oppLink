@@ -58,6 +58,11 @@ const heroImages: HeroSlide[] = [
   },
 ];
 
+const founder = {
+  name: 'Ready.Set.Works Founder',
+  role: 'Founder, OppLink',
+};
+
 export function LandingPage() {
   const [currentImage, setCurrentImage] = useState(0);
   useEffect(() => {
@@ -200,6 +205,62 @@ export function LandingPage() {
       </section>
 
       <CoachingSupportForm />
+
+      {/* Meet the Founder */}
+      <section className="border-t border-gray-100 bg-white py-16 sm:py-20 lg:py-24">
+        <div className="page-section">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 rounded-3xl border border-gray-100 bg-white p-6 shadow-card sm:gap-12 sm:p-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:p-10">
+            <div className="relative">
+              <div className="absolute -inset-2 -z-10 rounded-3xl bg-gradient-to-br from-brand-50 to-accent-50" />
+              <div className="flex min-h-[320px] items-center justify-center rounded-3xl border border-gray-200/80 bg-gradient-to-br from-gray-50 to-gray-100 p-8 shadow-sm sm:min-h-[380px]">
+                <div className="text-center">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-brand-600 shadow-sm ring-1 ring-gray-200">
+                    <Users className="h-8 w-8" />
+                  </div>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-gray-600">
+                    Founder Photo
+                  </p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Upload your professional photo here
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-accent-600">
+                Meet the Founder
+              </p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Building opportunity through support, coaching, and connection
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-gray-600 sm:text-lg">
+                OppLink was created to help people navigate real barriers to
+                opportunity with practical support and human connection. This
+                platform is designed to do more than list jobs. It brings
+                together coaching, workforce development resources, and guided
+                next steps so people can build confidence, strengthen skills,
+                and move toward meaningful work.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-gray-600 sm:text-lg">
+                {founder.name} built OppLink with a mission to make growth
+                pathways more accessible, more personal, and more empowering for
+                every community member.
+              </p>
+
+              <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+                <Link to="/founder-contact" className="btn-primary">
+                  Connect with me
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <span className="text-sm font-medium text-gray-500">
+                  {founder.role}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* How it works */}
       <section className="border-t border-gray-100 bg-white py-16 sm:py-20 lg:py-24">
