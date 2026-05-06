@@ -2,7 +2,6 @@ export type Category =
 'Jobs' |
 'Training' |
 'Transportation' |
-'Housing Support' |
 'Coaching' |
 'Community Resources';
 
@@ -38,11 +37,6 @@ export const categories: {
   name: 'Transportation',
   icon: 'Bus',
   description: 'Accessible transit and ride programs'
-},
-{
-  name: 'Housing Support',
-  icon: 'Home',
-  description: 'Independent living and housing assistance'
 },
 {
   name: 'Coaching',

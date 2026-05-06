@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Public coaching intake form (create only; no public reads)
+    match /coaching_requests/{requestId} {
+      allow read, update, delete: if false;
+      allow create: if request.resource.data.fullName is string
+        && request.resource.data.fullName.size() > 0
+        && request.resource.data.fullName.size() < 500
+        && request.resource.data.email is string
+        && request.resource.data.email.size() < 320
+        && request.resource.data.cityOrZip is string
+        && request.resource.data.cityOrZip.size() > 0
+        && request.resource.data.cityOrZip.size() < 200
+        && request.resource.data.helpTopics is list
+        && request.resource.data.availability is list
+        && request.resource.data.preferredContact is string
+        && request.resource.data.supportDescription is string
+        && request.resource.data.supportDescription.size() > 0
+        && request.resource.data.supportDescription.size() < 8000;
+    }
+  }
+}

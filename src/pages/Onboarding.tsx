@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowLeft, Check } from 'lucide-react';
-import { createUserProfile } from '../lib/user';
+import { useAuth } from '../contexts/AuthContext';
+
 export function Onboarding() {
+  const { user } = useAuth();
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
   const totalSteps = 4;
@@ -19,10 +21,12 @@ export function Onboarding() {
       return;
     }
 
-    createUserProfile({
-      name: 'Alex',
-      preferences: selections
-    });
+    if (user) {
+      localStorage.setItem(
+        `opplink.onboarding.${user.uid}`,
+        JSON.stringify(selections)
+      );
+    }
     navigate('/dashboard');
   };
   const toggleSelection = (field: 'types' | 'interests', value: string) => {
@@ -38,18 +42,18 @@ export function Onboarding() {
     });
   };
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <header className="bg-white border-b border-stone-200 px-6 py-4 flex items-center justify-between">
+      <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-xl leading-none">O</span>
           </div>
-          <span className="font-bold text-xl text-stone-900">OppLink</span>
+          <span className="font-bold text-xl text-gray-900">OppLink</span>
         </div>
         <button
           onClick={() => navigate('/')}
-          className="text-sm font-medium text-stone-500 hover:text-stone-900">
+          className="text-sm font-medium text-gray-500 hover:text-gray-900">
           
           Exit
         </button>
@@ -60,13 +64,13 @@ export function Onboarding() {
         <div className="w-full max-w-2xl">
           {/* Progress Bar */}
           <div className="mb-12">
-            <div className="flex justify-between text-sm font-medium text-stone-500 mb-2">
+            <div className="flex justify-between text-sm font-medium text-gray-500 mb-2">
               <span>
                 Step {step} of {totalSteps}
               </span>
               <span>{Math.round(step / totalSteps * 100)}%</span>
             </div>
-            <div className="h-2 bg-stone-200 rounded-full overflow-hidden">
+            <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-brand-600"
                 initial={{
@@ -83,7 +87,7 @@ export function Onboarding() {
           </div>
 
           {/* Form Steps */}
-          <div className="bg-white rounded-2xl shadow-soft border border-stone-100 p-8 md:p-12 min-h-[400px] relative overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-soft border border-gray-100 p-8 md:p-12 min-h-[400px] relative overflow-hidden">
             <AnimatePresence mode="wait">
               {step === 1 &&
               <motion.div
@@ -102,10 +106,10 @@ export function Onboarding() {
                 }}
                 className="space-y-6">
                 
-                  <h2 className="text-3xl font-bold text-stone-900">
+                  <h2 className="text-3xl font-bold text-gray-900">
                     What are you looking for?
                   </h2>
-                  <p className="text-stone-600">
+                  <p className="text-gray-600">
                     Select all that apply. This helps us personalize your
                     dashboard.
                   </p>
@@ -114,7 +118,6 @@ export function Onboarding() {
                     {[
                   'Jobs',
                   'Training & Education',
-                  'Housing Support',
                   'Transportation',
                   'Coaching',
                   'Community Events'].
@@ -122,7 +125,7 @@ export function Onboarding() {
                   <button
                     key={type}
                     onClick={() => toggleSelection('types', type)}
-                    className={`p-4 rounded-xl border-2 text-left transition-all ${selections.types.includes(type) ? 'border-brand-600 bg-brand-50 text-brand-900' : 'border-stone-200 hover:border-brand-300 text-stone-700'}`}>
+                    className={`p-4 rounded-xl border-2 text-left transition-all ${selections.types.includes(type) ? 'border-brand-600 bg-brand-50 text-brand-900' : 'border-gray-200 hover:border-brand-300 text-gray-700'}`}>
                     
                         <div className="flex justify-between items-center">
                           <span className="font-medium">{type}</span>
@@ -153,10 +156,10 @@ export function Onboarding() {
                 }}
                 className="space-y-6">
                 
-                  <h2 className="text-3xl font-bold text-stone-900">
+                  <h2 className="text-3xl font-bold text-gray-900">
                     What level of support do you prefer?
                   </h2>
-                  <p className="text-stone-600">
+                  <p className="text-gray-600">
                     There's no wrong answer. We want to make sure you feel
                     comfortable.
                   </p>
@@ -187,11 +190,11 @@ export function Onboarding() {
                       support: level.id
                     })
                     }
-                    className={`w-full p-5 rounded-xl border-2 text-left transition-all ${selections.support === level.id ? 'border-brand-600 bg-brand-50' : 'border-stone-200 hover:border-brand-300'}`}>
+                    className={`w-full p-5 rounded-xl border-2 text-left transition-all ${selections.support === level.id ? 'border-brand-600 bg-brand-50' : 'border-gray-200 hover:border-brand-300'}`}>
                     
                         <div className="flex justify-between items-center mb-1">
                           <span
-                        className={`font-semibold text-lg ${selections.support === level.id ? 'text-brand-900' : 'text-stone-900'}`}>
+                        className={`font-semibold text-lg ${selections.support === level.id ? 'text-brand-900' : 'text-gray-900'}`}>
                         
                             {level.title}
                           </span>
@@ -200,7 +203,7 @@ export function Onboarding() {
                       }
                         </div>
                         <p
-                      className={`text-sm ${selections.support === level.id ? 'text-brand-700' : 'text-stone-500'}`}>
+                      className={`text-sm ${selections.support === level.id ? 'text-brand-700' : 'text-gray-500'}`}>
                       
                           {level.desc}
                         </p>
@@ -227,10 +230,10 @@ export function Onboarding() {
                 }}
                 className="space-y-6">
                 
-                  <h2 className="text-3xl font-bold text-stone-900">
+                  <h2 className="text-3xl font-bold text-gray-900">
                     Where are you looking?
                   </h2>
-                  <p className="text-stone-600">
+                  <p className="text-gray-600">
                     Let us know your preferred work or activity format.
                   </p>
 
@@ -248,7 +251,7 @@ export function Onboarding() {
                       location: loc
                     })
                     }
-                    className={`w-full p-5 rounded-xl border-2 text-left transition-all ${selections.location === loc ? 'border-brand-600 bg-brand-50 text-brand-900 font-medium' : 'border-stone-200 hover:border-brand-300 text-stone-700'}`}>
+                    className={`w-full p-5 rounded-xl border-2 text-left transition-all ${selections.location === loc ? 'border-brand-600 bg-brand-50 text-brand-900 font-medium' : 'border-gray-200 hover:border-brand-300 text-gray-700'}`}>
                     
                         <div className="flex justify-between items-center">
                           <span>{loc}</span>
@@ -282,10 +285,10 @@ export function Onboarding() {
                   <div className="w-20 h-20 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Check className="w-10 h-10 text-brand-600" />
                   </div>
-                  <h2 className="text-3xl font-bold text-stone-900">
+                  <h2 className="text-3xl font-bold text-gray-900">
                     You're all set!
                   </h2>
-                  <p className="text-stone-600 max-w-md mx-auto">
+                  <p className="text-gray-600 max-w-md mx-auto">
                     We've customized your dashboard based on your preferences.
                     You can always change these settings later.
                   </p>
@@ -298,7 +301,7 @@ export function Onboarding() {
           <div className="flex justify-between mt-8">
             <button
               onClick={() => setStep(step - 1)}
-              className={`px-6 py-3 font-medium text-stone-600 hover:text-stone-900 flex items-center transition-opacity ${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              className={`px-6 py-3 font-medium text-gray-600 hover:text-gray-900 flex items-center transition-opacity ${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
               
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back

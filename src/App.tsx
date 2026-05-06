@@ -4,8 +4,8 @@ import {
   Routes,
   Route,
   useLocation,
-  Navigate } from
-'react-router-dom';
+  Navigate,
+} from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { LandingPage } from './pages/LandingPage';
@@ -14,9 +14,12 @@ import { Dashboard } from './pages/Dashboard';
 import { OpportunityDiscovery } from './pages/OpportunityDiscovery';
 import { OpportunityDetail } from './pages/OpportunityDetail';
 import { SupportCoaching } from './pages/SupportCoaching';
-import { getCurrentUser } from './lib/user';
-// Layout component to conditionally render Navbar/Footer
-function Layout({ children }: {children: React.ReactNode;}) {
+import { Login } from './pages/Login';
+import { Signup } from './pages/Signup';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { OpportunitiesProvider } from './contexts/OpportunitiesContext';
+
+function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const hideNavFooter = location.pathname === '/onboarding';
   return (
@@ -24,28 +27,71 @@ function Layout({ children }: {children: React.ReactNode;}) {
       {!hideNavFooter && <Navbar />}
       <main className="flex-grow">{children}</main>
       {!hideNavFooter && <Footer />}
-    </div>);
-
+    </div>
+  );
 }
+
+function RequireAuth({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+
+  if (loading) {
+    return (
+      <div className="min-h-[50vh] flex items-center justify-center text-gray-600">
+        Loading…
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <Navigate to="/login" replace state={{ from: location.pathname }} />
+    );
+  }
+
+  return <>{children}</>;
+}
+
 export function App() {
-  const RequireUser = ({ children }: {children: React.ReactNode;}) => {
-    const user = getCurrentUser();
-    if (!user) return <Navigate to="/onboarding" replace />;
-    return <>{children}</>;
-  };
-
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/dashboard" element={<RequireUser><Dashboard /></RequireUser>} />
-          <Route path="/opportunities" element={<OpportunityDiscovery />} />
-          <Route path="/opportunities/:id" element={<OpportunityDetail />} />
-          <Route path="/support" element={<SupportCoaching />} />
-        </Routes>
-      </Layout>
-    </Router>);
-
+    <AuthProvider>
+      <OpportunitiesProvider>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/onboarding"
+              element={
+                <RequireAuth>
+                  <Onboarding />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
+            <Route path="/opportunities" element={<OpportunityDiscovery />} />
+            <Route
+              path="/opportunities/:id"
+              element={
+                <RequireAuth>
+                  <OpportunityDetail />
+                </RequireAuth>
+              }
+            />
+            <Route path="/support" element={<SupportCoaching />} />
+          </Routes>
+        </Layout>
+      </Router>
+      </OpportunitiesProvider>
+    </AuthProvider>
+  );
 }

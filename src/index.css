@@ -10,20 +10,35 @@
 
 @layer base {
   body {
-    @apply bg-stone-50 text-stone-800 font-sans antialiased;
+    @apply bg-[#F9FAFB] text-[#111827] font-sans antialiased text-[15px] sm:text-base;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-stone-900;
+    @apply font-semibold tracking-tight text-[#111827];
   }
 }
+
 @layer components {
+  /** Primary CTA — deep blue, soft elevation */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors duration-200 shadow-sm;
+    @apply inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 min-h-[44px] border border-transparent text-sm sm:text-base font-semibold rounded-xl text-white bg-brand-600 hover:bg-brand-700 active:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-500 transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:pointer-events-none;
   }
+
+  /** Secondary — outline / ghost surface */
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border border-stone-200 text-base font-medium rounded-xl text-stone-700 bg-white hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors duration-200 shadow-sm;
+    @apply inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 min-h-[44px] border border-gray-200 text-sm sm:text-base font-semibold rounded-xl text-[#111827] bg-white hover:bg-gray-50 active:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-500 transition-all duration-200 shadow-sm hover:shadow disabled:opacity-50 disabled:pointer-events-none;
   }
+
+  /** Text-style button (nav, tertiary) */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2 min-h-[40px] text-sm font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 transition-colors duration-150;
+  }
+
   .card {
-    @apply bg-white rounded-2xl shadow-soft border border-stone-100 overflow-hidden;
+    @apply bg-white rounded-2xl shadow-card border border-gray-100/80 overflow-hidden;
+  }
+
+  /** Page sections — consistent horizontal gutter */
+  .page-section {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }

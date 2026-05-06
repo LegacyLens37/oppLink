@@ -12,7 +12,6 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
     'Jobs',
     'Training',
     'Transportation',
-    'Housing Support',
     'Coaching',
     'Community Resources']
 
@@ -32,17 +31,17 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-40 w-72 bg-white border-r border-stone-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:block ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      className={`fixed inset-y-0 left-0 z-40 w-72 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:block ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       
       <div className="h-full flex flex-col">
-        <div className="px-6 py-4 border-b border-stone-200 flex items-center justify-between lg:hidden">
+        <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between lg:hidden">
           <h2 className="text-lg font-semibold flex items-center">
             <Filter className="w-5 h-5 mr-2" />
             Filters
           </h2>
           <button
             onClick={onClose}
-            className="p-2 text-stone-400 hover:text-stone-600">
+            className="p-2 text-gray-400 hover:text-gray-600">
             
             <X className="w-5 h-5" />
           </button>
@@ -51,7 +50,7 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
         <div className="flex-1 overflow-y-auto p-6 space-y-8">
           {filterSections.map((section, idx) =>
           <div key={idx}>
-              <h3 className="text-sm font-semibold text-stone-900 mb-4">
+              <h3 className="text-sm font-semibold text-gray-900 mb-4">
                 {section.title}
               </h3>
               <div className="space-y-3">
@@ -63,7 +62,7 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                     <div className="relative flex items-center justify-center w-5 h-5 mr-3">
                       <input
                     type="checkbox"
-                    className="peer appearance-none w-5 h-5 border border-stone-300 rounded bg-white checked:bg-brand-600 checked:border-brand-600 transition-colors cursor-pointer" />
+                    className="peer appearance-none w-5 h-5 border border-gray-300 rounded bg-white checked:bg-brand-600 checked:border-brand-600 transition-colors cursor-pointer" />
                   
                       <svg
                     className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none"
@@ -80,7 +79,7 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                     
                       </svg>
                     </div>
-                    <span className="text-sm text-stone-600 group-hover:text-stone-900 transition-colors">
+                    <span className="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
                       {option}
                     </span>
                   </label>
@@ -90,11 +89,11 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
           )}
         </div>
 
-        <div className="p-6 border-t border-stone-200 bg-stone-50">
+        <div className="p-6 border-t border-gray-200 bg-gray-50">
           <button className="w-full btn-primary py-2.5 text-sm">
             Apply Filters
           </button>
-          <button className="w-full mt-3 text-sm font-medium text-stone-500 hover:text-stone-800 transition-colors">
+          <button className="w-full mt-3 text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors">
             Clear all
           </button>
         </div>

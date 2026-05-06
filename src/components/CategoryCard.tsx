@@ -29,8 +29,8 @@ export function CategoryCard({
         <div className="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:bg-brand-600 group-hover:text-white transition-colors">
           <Icon className="w-6 h-6" />
         </div>
-        <h3 className="text-lg font-semibold text-stone-900 mb-2">{name}</h3>
-        <p className="text-sm text-stone-500 leading-relaxed">{description}</p>
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">{name}</h3>
+        <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
       </motion.div>
     </Link>);
 

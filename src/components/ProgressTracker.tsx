@@ -44,7 +44,7 @@ export function ProgressTracker() {
 
   return (
     <div className="card p-6">
-      <h2 className="text-lg font-semibold text-stone-900 mb-6">
+      <h2 className="text-lg font-semibold text-gray-900 mb-6">
         Your Progress
       </h2>
 
@@ -58,10 +58,10 @@ export function ProgressTracker() {
                 
                 <Icon className="w-5 h-5" />
               </div>
-              <div className="text-2xl font-bold text-stone-900">
+              <div className="text-2xl font-bold text-gray-900">
                 {stat.value}
               </div>
-              <div className="text-xs text-stone-500 font-medium">
+              <div className="text-xs text-gray-500 font-medium">
                 {stat.label}
               </div>
             </div>);
@@ -70,7 +70,7 @@ export function ProgressTracker() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-sm font-medium text-stone-900 uppercase tracking-wider">
+        <h3 className="text-sm font-medium text-gray-900 uppercase tracking-wider">
           Next Steps
         </h3>
         <div className="space-y-3">
@@ -83,10 +83,10 @@ export function ProgressTracker() {
                   <div className="w-2 h-2 bg-brand-500 rounded-full" />
                 </div> :
 
-            <Circle className="w-5 h-5 text-stone-300 mr-3 flex-shrink-0" />
+            <Circle className="w-5 h-5 text-gray-300 mr-3 flex-shrink-0" />
             }
               <span
-              className={`text-sm ${step.status === 'completed' ? 'text-stone-500 line-through' : step.status === 'current' ? 'text-stone-900 font-medium' : 'text-stone-500'}`}>
+              className={`text-sm ${step.status === 'completed' ? 'text-gray-500 line-through' : step.status === 'current' ? 'text-gray-900 font-medium' : 'text-gray-500'}`}>
               
                 {step.title}
               </span>
