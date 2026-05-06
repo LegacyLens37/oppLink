@@ -23,5 +23,36 @@ service cloud.firestore {
         && request.resource.data.supportDescription.size() > 0
         && request.resource.data.supportDescription.size() < 8000;
     }
+
+    // Founder contact form (create only; no public reads)
+    match /founder_contact_requests/{requestId} {
+      allow read, update, delete: if false;
+      allow create: if request.resource.data.keys().hasOnly([
+          'firstName',
+          'lastName',
+          'phone',
+          'email',
+          'message',
+          'createdAt',
+          'status',
+        ])
+        && request.resource.data.firstName is string
+        && request.resource.data.firstName.size() > 0
+        && request.resource.data.firstName.size() < 200
+        && request.resource.data.lastName is string
+        && request.resource.data.lastName.size() > 0
+        && request.resource.data.lastName.size() < 200
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() > 0
+        && request.resource.data.phone.size() < 40
+        && request.resource.data.email is string
+        && request.resource.data.email.size() > 0
+        && request.resource.data.email.size() < 320
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() < 8000
+        && request.resource.data.status == 'new'
+        && request.resource.data.createdAt == request.time;
+    }
   }
 }
