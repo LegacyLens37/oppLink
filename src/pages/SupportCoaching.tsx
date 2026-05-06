@@ -8,7 +8,7 @@ import {
 'lucide-react';
 export function SupportCoaching() {
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-[#EEF2F7] pb-24">
       {/* Hero */}
       <div className="bg-brand-600 text-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">

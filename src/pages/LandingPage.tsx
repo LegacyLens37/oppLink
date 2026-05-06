@@ -68,10 +68,10 @@ export function LandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB]">
+    <div className="min-h-screen bg-[#EEF2F7]">
       {/* Hero */}
       <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/80 via-[#F9FAFB] to-[#F9FAFB]" />
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/80 via-[#EEF2F7] to-[#EEF2F7]" />
         <div className="page-section">
           <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
             <motion.div
@@ -261,7 +261,7 @@ export function LandingPage() {
       </section>
 
       {/* Categories */}
-      <section className="border-t border-gray-100 bg-[#F9FAFB] py-16 sm:py-20 lg:py-24">
+      <section className="border-t border-gray-100 bg-[#EEF2F7] py-16 sm:py-20 lg:py-24">
         <div className="page-section">
           <div className="mb-10 flex flex-col gap-6 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-xl">

@@ -23,7 +23,7 @@ export function OpportunityDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F9FAFB] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#EEF2F7] flex items-center justify-center px-4">
         <p className="text-gray-600">Loading opportunity…</p>
       </div>
     );
@@ -31,7 +31,7 @@ export function OpportunityDetail() {
 
   if (!opportunity) {
     return (
-      <div className="min-h-screen bg-[#F9FAFB] pb-20 px-4">
+      <div className="min-h-screen bg-[#EEF2F7] pb-20 px-4">
         <div className="max-w-lg mx-auto pt-16 text-center card p-10">
           <h1 className="text-xl font-semibold text-gray-900 mb-2">
             Opportunity not found
@@ -48,7 +48,7 @@ export function OpportunityDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] pb-20">
+    <div className="min-h-screen bg-[#EEF2F7] pb-20">
       {/* Breadcrumb & Back */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <Link

@@ -10,7 +10,7 @@
 
 @layer base {
   body {
-    @apply bg-[#F9FAFB] text-[#111827] font-sans antialiased text-[15px] sm:text-base;
+    @apply bg-[#EEF2F7] text-[#111827] font-sans antialiased text-[15px] sm:text-base;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold tracking-tight text-[#111827];

@@ -18,7 +18,7 @@ export function OpportunityDiscovery() {
   }, [opportunities, categoryFilter]);
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] flex flex-col">
+    <div className="min-h-screen bg-[#EEF2F7] flex flex-col">
       {/* Header Area */}
       <div className="bg-white border-b border-gray-200 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
